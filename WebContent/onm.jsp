@@ -316,7 +316,7 @@ margin-bottom: 5px;
 }
 body {
  background: url("calendar/images/back3.jpg");
- background-repeat: no-repeat;
+ background-repeat:repeat-y;
  background-position: center center;
 /*  background: #FFE288; */
  } 
@@ -1999,14 +1999,16 @@ function searchCheck(){
                 <!-------- 일정 검색 위치 ------------------------------------------------------------------------------------------------------------------>
 		        <form role="form" id="searchForm">
 		            <div class="form-group has-success has-feedback">
-		                <div  id="planSearch">
-		                    <label class="col-lg-0 control-label" for="inputSuccess" style="float: left; text-align: center; height: auto; padding-top: 6px;color:#fff;">
-		                    &nbsp;&nbsp;&nbsp;&nbsp;일정검색 <span class="glyphicon glyphicon-search"></span>
+		                <div  id="planSearch" class="container">
+		                    <div class="col-sm-2">
+		                    <label class="control-label" for="inputSuccess" style="float: left; text-align: center; height: auto; padding-top: 6px;color:#fff;">
+		                          일정검색 <span class="glyphicon glyphicon-search"></span>
 		                    </label>
-		                    <div class="col-md-3" style="height: 34px">
+		                    </div>
+		                    <div class="col-sm-2" >
 		                        <input type="text" class="form-control" id="inputSearch" placeholder="찾고싶은 일정을 입력하세요..."> &nbsp;&nbsp;&nbsp;                        
 		                    </div>
-		                    <div id="searchRadios" style="float: left; width:auto"> 
+		                    <div class="col-sm-5" id="searchRadios" style="float: left; "> 
 		                        <button type="button" class="btn btn-success" id="btnSearch">검색</button>
 		                            &nbsp;&nbsp;&nbsp;
 		                        <label class="radio-inline" style="padding-top: 3px;color:#fff;">
