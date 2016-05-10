@@ -320,33 +320,42 @@
 		WHERE (onmcard.title LIKE '%'||#{inputSearch}||'%' OR onmcard.CONTENT LIKE '%'||#{inputSearch}||'%') AND function=90 AND 
 		onmuser.nickname=#{logNickname}
 	</select> -->
-		<select id="searchMyPlan" parameterType="java.util.Map" resultType="Search">
-		SELECT nickname,title,content,onmcard.no FROM onmuser, onmcard WHERE onmuser.no=onmcard.userno 
-		AND (title LIKE '%'||#{inputSearch}||'%' OR CONTENT LIKE '%'||#{inputSearch}||'%') AND
-		onmuser.no=#{logUserNo}
+	
+	<select id="searchMyPlan" parameterType="java.util.Map" resultType="Search">
+		SELECT nickname,title,content,onmcard.no 
+		FROM onmuser, onmcard
+		WHERE onmuser.no=onmcard.userno 
+		AND (title LIKE '%'||#{inputSearch}||'%' OR CONTENT LIKE '%'||#{inputSearch}||'%') AND onmuser.no=#{logUserNo}
 	</select>
+	
 <!-- 
 	<select id="searchAllPlan" parameterType="java.util.Map" resultType="Search">
 		SELECT onmuser.nickname,onmcard.title,onmcard.content,onmcomm.cardcomm,onmcomm.no
 		FROM onmuser
 		INNER JOIN onmcard ON onmuser.no=onmcard.userno
 		LEFT OUTER JOIN onmcomm ON onmcard.no=onmcomm.cardno
-		WHERE (onmcard.title LIKE '%'||#{inputSearch}||'%' OR CONTENT LIKE '%'||#{inputSearch}||'%') AND
-		onmcard.done=1
+		WHERE (onmcard.title LIKE '%'||#{inputSearch}||'%' OR CONTENT LIKE '%'||#{inputSearch}||'%') AND onmcard.done=1
 	</select> -->
+	
 	<select id="searchAllPlan" parameterType="java.util.Map" resultType="Search">
-		SELECT nickname,title,content,onmcard.no FROM onmuser, onmcard WHERE onmuser.no=onmcard.userno 
-		AND (title LIKE '%'||#{inputSearch}||'%' OR CONTENT LIKE '%'||#{inputSearch}||'%') AND
-		onmcard.done=1
+		SELECT nickname,title,content,onmcard.no 
+		FROM onmuser, onmcard 
+		WHERE onmuser.no=onmcard.userno 
+		AND (title LIKE '%'||#{inputSearch}||'%' OR CONTENT LIKE '%'||#{inputSearch}||'%') AND onmcard.done=1
 	</select>
+	
 	<select id="searchHashPlan" parameterType="java.util.Map" resultType="Search">
 		SELECT onmuser.nickname,onmcard.title,onmcard.content,onmcomm.cardcomm,onmcomm.no
 		FROM onmuser
 		INNER JOIN onmcard ON onmuser.no=onmcard.userno
 		LEFT OUTER JOIN onmcomm ON onmcard.no=onmcomm.cardno
-		WHERE (cardcomm LIKE '%'||#{inputSearch}||'%') AND FUNCTION=90
+		WHERE (cardcomm LIKE '%'||#{inputSearch}||'%') AND FUNCTION=90 AND onmcard.done=1
 	</select>
+	
 	<select id="searchHashTag" parameterType="int" resultType="String">
-		SELECT cardcomm FROM onmcomm WHERE cardno=#{no} AND function=90
+		SELECT cardcomm
+		FROM onmcomm
+		WHERE cardno=#{no} AND function=90
 	</select>
+	
 </mapper>

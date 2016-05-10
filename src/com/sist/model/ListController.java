@@ -146,7 +146,7 @@ public class ListController {
 				}
 				String data2= OnmDAO.searchHashTag(vo.getNo());
 				if(data2!=null){
-					data2= data2.substring(0, data2.length()<21?data2.length()-1:20);
+					data2= data2.substring(0, data2.length()<20?data2.length()-1:19);
 					vo.setCardcomm(data2);
 				} else {
 					vo.setCardcomm(null);
@@ -167,7 +167,7 @@ public class ListController {
 					}
 					String data2= OnmDAO.searchHashTag(vo.getNo());
 					if(data2!=null){
-						data2= data2.substring(0, data2.length()<21?data2.length()-1:20);
+						data2= data2.substring(0, data2.length()<20?data2.length()-1:19);
 						vo.setCardcomm(data2);
 					} else {
 						vo.setCardcomm(null);
@@ -183,7 +183,7 @@ public class ListController {
 				String data = HashingHTML.htmlToSearch(vo.getContent());
 				String data2= vo.getCardcomm();
 				if(data2!=null){
-					data2= data2.substring(0, vo.getCardcomm().length()<21?vo.getCardcomm().length()-1:20);
+					data2= data2.substring(0, vo.getCardcomm().length()<20?vo.getCardcomm().length()-1:19);
 					vo.setCardcomm(data2);
 				} else {
 					vo.setCardcomm(null);

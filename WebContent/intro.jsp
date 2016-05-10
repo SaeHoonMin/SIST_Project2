@@ -548,7 +548,7 @@ style="z-index: 6">
 					<div class="modal-body" style="padding:40px 50px;height: 410px;">
 						<div class="form-group" id="divEmail" >
 							<label for="email"><span class="glyphicon glyphicon-user"></span> 이메일</label>
-							<input type="text" class="email form-control" id="emailChange" name="emailChange" placeholder="이메일을 입력하세요" value=${logEmail }>
+							<input type="text" class="email form-control" id="emailChange" name="emailChange" placeholder="이메일을 입력하세요" value=${logEmail } readonly>
 						</div>						
 						<div class="form-group" id="divNickname">
 							<label for="nickname">
@@ -652,6 +652,7 @@ style="z-index: 6">
 				
 				//비밀번호 변경 창 액션
 				$("#userDetail").click(function() {
+					
 					var emailChange = $('#emailChange').val();
 					//$('#emailChange').attr('disabled', true);
 					var nicknameChange = $('#nicknameChange').val();
@@ -757,7 +758,7 @@ style="z-index: 6">
 						});
 					}
 				});
-
+				
 				//로그인 액션
 				$('#logYes').click(function() {
 					var logEmail = $('#logEmail').val();
@@ -798,7 +799,7 @@ style="z-index: 6">
 						});
 					}
 				});
-
+				
 				// 로그인 시 아이디 저장하는 액션
 				$('#logYes').click(function() {
 					if ($('#logSave').attr('checked')) {

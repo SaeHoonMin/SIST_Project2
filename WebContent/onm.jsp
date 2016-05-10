@@ -1889,12 +1889,12 @@ function searchCheck(){
 					<div class="modal-body" style="padding:40px 50px;height: 410px;">
 						<div class="form-group" id="divEmail" >
 							<label for="email"><span class="glyphicon glyphicon-user"></span> 이메일</label>
-							<input type="text" class="email form-control" id="emailChange" name="emailChange" placeholder="이메일을 입력하세요" value=${logEmail }>
+							<input type="text" class="email form-control" id="emailChange" name="emailChange" placeholder="이메일을 입력하세요" value=${logEmail }  readonly>
 						</div>						
 						<div class="form-group" id="divNickname">
 							<label for="nickname">
 							<span class="glyphicon glyphicon-apple"></span> 닉네임</label>
-							<input type="text" class="pwd form-control" id="nicknameChange" name="nicknameChange" placeholder="사용하실 대화명을 입력하세요.(4자리 이상)" value=${logNickname }>
+							<input type="text" class="pwd form-control" id="nicknameChange" name="nicknameChange" placeholder="사용하실 대화명을 입력하세요.(4자리 이상)" value=${logNickname }  readonly>
 						</div>
 						<div class="form-group" id="divPwd">
 							<label for="psw">
