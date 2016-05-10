@@ -258,7 +258,7 @@ body{
     height: 40px;
     line-height: 40px;
     text-decoration: none;
-    width: 100%;
+    width: 90%;
     text-align: center;
     border:inherit;
     margin:10px;
