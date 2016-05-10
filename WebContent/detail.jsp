@@ -137,6 +137,7 @@ border-bottom: 2px solid #2694e8;
 #contentText{
    font-size : 17px;
    margin:10px;
+   vertical-align: middle;
 }
 #sideBar{
    padding : 10px;
@@ -223,12 +224,13 @@ margin:10px;
 }
 #insertContent{
 background: none;
-border-bottom: 2px solid #2694e8;
+/* border-bottom: 2px solid #2694e8; */
 border-radius: 0px;
 color: black;
 margin: 10px;
 text-align: center;
 cursor : pointer;
+vertical-align: super;
 }
 #insertContent:hover, #insertContent:active{
 background: #C8E1F1;
@@ -365,7 +367,7 @@ border: none;
 					<div id="modalTextarea">
 						<div id="contentText" style="font: bold;"><img src="calendar\images\text-icon.png" style="text-align:left;font-size:20px;">&nbsp;&nbsp;일정내용
 						<c:if test="${own=='show'}">
-						<span id="insertContent" data-toggle="tooltip" title="일정 내용 수정">  수정  </span>
+						<span id="insertContent" data-toggle="tooltip" title="일정 내용 수정"><img src="calendar\images\revision-icon1.png"></span>
 						</c:if>
 						</div>
 						<div id="newTA" style="display:none">

@@ -352,7 +352,7 @@ margin-bottom: 5px;
 }
 body {
  background: url("calendar/images/back3.jpg");
- background-repeat: no-repeat;
+ background-repeat:repeat-y;
  background-position: center center;
 /*  background: #FFE288; */
  } 

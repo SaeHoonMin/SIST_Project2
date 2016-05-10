@@ -71,6 +71,9 @@
     font-size: 18px;
     height:40px;
     z-index: 100;
+    display: table-cell;
+    padding: 0px;
+    margin: 0px;
 }
 </style>
 	
@@ -219,7 +222,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 	data-start="1500"
 	data-easing="Back.easeInOut"
 	data-endspeed="300">
-	
+	오늘일은 내일로 미루자!!!
 </div>
 <!-- LAYER -->
 <div class="tp-caption rs-caption-2 sfb"
@@ -786,7 +789,6 @@ style="z-index: 6">
 									$('#logPwd').val("");
 									return;
 								} else {
-									alert("로그인 성공");
 									$('#logEmail').val("");
 									$('#logPwd').val("");
 									$('#LoginModal').modal('toggle');
