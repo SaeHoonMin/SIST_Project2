@@ -140,7 +140,6 @@ border-bottom: 2px solid #2694e8;
    vertical-align: middle;
 }
 #sideBar{
-   
    padding : 10px;
 }
 #map{

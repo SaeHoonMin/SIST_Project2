@@ -127,6 +127,11 @@
 		UPDATE onmlist SET
 		html=#{html} WHERE no=#{no}
 	</update>
+	
+	<update id="cardModi" parameterType="Ocard">
+		UPDATE onmcard SET
+		title=#{title} WHERE no=#{no}
+	</update>
 
 	<!-- 캘린더 드래그 드롭 업데이트 -->
 	<update id="dateDrag" parameterType="Ocard">
