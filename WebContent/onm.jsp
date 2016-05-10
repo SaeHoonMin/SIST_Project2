@@ -388,7 +388,6 @@ font-weight: bold;
       
         $(this).on("click",".searchUl",function(){
         	var cno= $(this).siblings(".cno").val();
-        	alert(cno);
         	 var target = "detail.do?no=card";
 			    target= target+cno.trim();
 				$("#cardDetail .modal-dialog").load(target, function() {
@@ -1047,7 +1046,7 @@ font-weight: bold;
       });
       $(this).on("click","#checkInsert",function(){
     	 if($("#checklistadd").css("display")=="inline"){
-    		 alert("이미 체크리스트 존재합니다.");
+    		$. alert("이미 체크리스트 존재합니다.");
     		 return;
     	 }
     		  
@@ -2046,7 +2045,7 @@ function searchCheck(){
                     </div>
                     
                     <div class="addListPanel" style="display:none;">
-                        <input name="name" class="addListTxt" type="text" placeholder="리스트 추가하기.."/>
+                        <input name="name" class="addListTxt" type="text" style="width: 270px;" placeholder="리스트 추가하기.."/>
                         <input type="button" value="취소" class="listTitleCancel" />
                         <input type="button" value="추가" class="listTitleBtn" />
                     </div>

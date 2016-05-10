@@ -599,7 +599,7 @@ style="z-index: 6">
 						data : $('#logFrm').serialize(),
 						success : function(data) {
 							var logEmail = $('#logEmail').val(data);
-							if (data != "")
+							if (data != "" || data !=null)
 								$('#logSave').attr('checked', true);
 							else
 								$('#logSave').attr('checked', false);

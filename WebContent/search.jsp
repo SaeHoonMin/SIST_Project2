@@ -47,9 +47,19 @@
 #nickLabel{
 	text-align: center;
 }
-.searchDiv:hover{
+.searchDiv:hover, .searchDiv:active {
 	background-color: gold;
+	height: 49px;
 }
+
+label.LaH:hover, label.LaH:active {
+	text-decoration: underline;
+}
+
+.LaH {
+    cursor: pointer;
+}
+
 </style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -79,9 +89,9 @@
 					<div class="searchDiv">
 					<input type="hidden" value="${vo.no}" class="cno">
 						<ul class="search-group3 searchUl" style="padding:0px;">                    	
-							<li class="list-group-item col-sm-2 half li2" id=nickLabel><label>${vo.nickname}</label></li>
-							<li class="list-group-item col-sm-7 half li2"><label>${vo.title}</label></li>
-							<li class="list-group-item col-sm-3 half li2"><label>${vo.cardcomm}</label></li>
+							<li class="list-group-item col-sm-2 half li2" id=nickLabel><label class="LaH">${vo.nickname}</label></li>
+							<li class="list-group-item col-sm-7 half li2"><label class="LaH">${vo.title}</label></li>
+							<li class="list-group-item col-sm-3 half li2"><label class="LaH">${vo.cardcomm}</label></li>
 						</ul>
 						</div>
 					</c:forEach>    

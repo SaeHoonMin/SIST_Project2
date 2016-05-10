@@ -12,6 +12,7 @@ import com.sist.dao.UserDTO;
 
 @Controller("loginController")
 public class LoginController {
+	
   //로그인 시 액션
   @RequestMapping("loginOK.do")
   public String loginOK(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -54,7 +55,12 @@ public class LoginController {
   public String emailSaveGet(HttpServletRequest req, HttpServletResponse res) throws Exception {
     Cookie[] cookies = req.getCookies();
       String emailSave=cookies[((int)cookies.length-1)].getValue();
-      res.getWriter().write(String.valueOf(emailSave));
+      if((emailSave.indexOf("."))>4){
+          res.getWriter().write(String.valueOf(emailSave));
+      } else {
+    	  emailSave="";
+    	  res.getWriter().write(String.valueOf(emailSave));
+      }
     return "ajax";
   }
   
