@@ -34,7 +34,7 @@
 }
 
 .list-group-item{
-	background-color:rgba(255, 243, 19, 0.5);
+	background-color:rgba(255, 243, 13, 0.6);
 	border-color: white;
 	height: 49px;
 }

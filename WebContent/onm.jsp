@@ -36,11 +36,33 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
-   <style type="text/css">
+<style type="text/css">
    @media screen and (min-width: 768px) {
 	
 	#cardDetail .modal-dialog  {width:1000px;}
 	#planSearchModal .modal-dialog {width:1200px;}
+	#planSearch2 {
+		width:600px;
+		height: 90px;
+		position: relative;
+	}
+}
+.searchLabel{
+	padding-top: 6px;
+	margin: 0px 0px;
+}
+
+#inputSearch{
+	min-width : 10%;
+	max-width: 200px;
+	padding: 0px 0px;
+	margin: 0px 0px;
+}
+
+#searchRadios{
+	position: inherit;
+	width: 700px;
+	min-width: 400px;
 }
 
 body{
@@ -258,7 +280,7 @@ body{
     height: 40px;
     line-height: 40px;
     text-decoration: none;
-    width: 100%;
+    width: 90%;
     text-align: center;
     border:inherit;
     margin:10px;
@@ -1999,16 +2021,14 @@ function searchCheck(){
                 <!-------- 일정 검색 위치 ------------------------------------------------------------------------------------------------------------------>
 		        <form role="form" id="searchForm">
 		            <div class="form-group has-success has-feedback">
-		                <div  id="planSearch">
-		                    <label class="col-lg-0 control-label" for="inputSuccess" style="float: left; text-align: center; height: auto; padding-top: 6px;color:#fff;">
-		                    &nbsp;&nbsp;&nbsp;&nbsp;일정검색 <span class="glyphicon glyphicon-search"></span>
+		                <div  id="planSearch2">
+		                    <label class="searchLabel" for="inputSuccess" style="float: left; text-align: center; color:#fff;">
+		                    	일정검색 <span class="glyphicon glyphicon-search"></span>&nbsp;
 		                    </label>
-		                    <div class="col-md-3" style="height: 34px">
-		                        <input type="text" class="form-control" id="inputSearch" placeholder="찾고싶은 일정을 입력하세요..."> &nbsp;&nbsp;&nbsp;                        
-		                    </div>
-		                    <div id="searchRadios" style="float: left; width:auto"> 
-		                        <button type="button" class="btn btn-success" id="btnSearch">검색</button>
-		                            &nbsp;&nbsp;&nbsp;
+		                     <input type="text" class="form-control" id="inputSearch" placeholder="  찾고싶은 일정을 입력하세요..." style="float: left;">
+		                     <button type="button" class="btn btn-success" id="btnSearch" style="float: left;">검색</button>
+		                     <br>		                                           
+		                    <div id="searchRadios" style="float: left;">                   
 		                        <label class="radio-inline" style="padding-top: 3px;color:#fff;">
 		                            <input type="radio" name="searchRadio" id="radioMyPlan" value="1" checked="checked">내 일정
 		                        </label> 
@@ -2016,7 +2036,7 @@ function searchCheck(){
 		                            <input type="radio" name="searchRadio" id="radioAllPlan" value="2">모든 일정
 		                        </label> 
 		                        <label class="radio-inline" style="padding-top: 3px;color:#fff;"> 
-		                            <input type="radio" name="searchRadio" id="radioHash" value="3">#해시태그
+		                            <input type="radio" name="searchRadio" id="radioHash" value="3">#해시
 		                        </label>
 		                    </div>
 		                </div>
@@ -2027,7 +2047,7 @@ function searchCheck(){
                 
     
 
-            <div id="timetable" style="float:left;max-width:7000px; margin-top:50px;">
+            <div id="timetable" style="float:left;max-width:7000px; margin-top:-12px;">
                 
                 <div style="text-align:center">
                 
