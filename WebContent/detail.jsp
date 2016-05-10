@@ -72,7 +72,7 @@ body{
     word-break: break-all;
     display: inline-block;
     position: relative;
-    border-bottom: 2px solid #e3e3e3;
+    border-bottom: 2px dotted;
 }
 #commentAdd{
 margin-top:15px;
@@ -384,10 +384,10 @@ border: none;
 	  					  </div>
 	  					  <div id="hashready" style="display:none"></div>    
                           <c:if test="${hashList!=null}">       
-                          <div id="hashtag" style="border-top: 2px solid #eee;width: 500;" >
-
+                          <div id="hashtag" style="    color: navy; width: 500px; font-weight: bold;" >
+                            <img src="calendar\images\tag-icon.png" style="vertical-align: baseline;">&nbsp;&nbsp;
                            <c:forEach var="tt" items="${hashList}">
-                               <a href="#" class='hashLink'> ${tt} </a>
+                               <a href="#" class='hashLink'> ${tt}&nbsp; </a>
                            </c:forEach>
                           </div>
                           </c:if>                 
@@ -519,6 +519,7 @@ border: none;
                         </div>
                     </div>
                     </c:if>
+                    <br/>
                     <c:if test="${file==null}">
                     <div id="modalFile" style="display:none">
                         <form class="fileUpload" action="download.jsp" method="post" enctype="multipart/form-data">
@@ -637,7 +638,7 @@ border: none;
                <br>                       <%-- 뛰어 --%>
                  
                  <button type="button" class="btn btn-default btn-sm" id="checkBtn">
-                  <img src="calendar\images\checkbox-icon.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>체크리스트</b>
+                  <img src="calendar\images\checkbox-icon.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>체크리스트</b>
                 </button>
                 <div id="checkDiv" style="display:none">
                     <div style="margin:10px;">
@@ -669,7 +670,7 @@ border: none;
                 
                 <br>
                 <button class="btn btn-default btn-sm" type="button" id="priorityBtn" >                 
-                  <img src="calendar\images\star-icon.png">&nbsp;&nbsp;<b>우선순위 설정  </b>                     
+                  <img src="calendar\images\star-icon.png">&nbsp;&nbsp;&nbsp;<b>우선순위 설정  </b>                     
                 </button>
                 <div class="container" id ="priorityDiv" style="display:none">
                     <p>중요도</p>
@@ -766,12 +767,12 @@ border: none;
             </div>
             
             
-            <br>
+            <br/>
             <button class="btn btn-default btn-sm" type="button" id="carddeleteBtn" >                 
                 <img src="calendar\images\carddelete.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>카드삭제 </b>                  
           </button>
           </c:if>
-          <br>
+          <br/><br/>
             <div class="prioritygraph" style="width: 230px;height: 200px;"> 
                  <div id="container" style="min-width: 200px; max-width: 210px; height: 150px; margin: 0 auto"></div>
             </div>
