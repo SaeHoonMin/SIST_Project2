@@ -32,15 +32,39 @@
 
 <script src="assets/plugins/jquery/jquery-migrate.min.js"></script>
 <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
-<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=a41bbfd5db3d2e44b63d4711d5c8d15f&libraries=services"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=5bf52f80c44ad8bf1a205549158d5c83&libraries=services"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
-   <style type="text/css">
+<style type="text/css">
    @media screen and (min-width: 768px) {
-	
-	#cardDetail .modal-dialog  {width:1000px;}
-	#planSearchModal .modal-dialog {width:1200px;}
+   
+   #cardDetail .modal-dialog  {width:1000px;}
+   #planSearchModal .modal-dialog {width:1200px;}
+   #planSearch2 {
+      width:800px;
+      height: 90px;
+      position: relative;
+   }
+}
+.searchLabel{
+   padding-top: 6px;
+   margin: 0px 0px;
+}
+
+#inputSearch{
+   min-width : 10%;
+   max-width: 200px;
+   padding: 0px 0px;
+   margin: 0px 0px;
+}
+
+#searchRadios{
+   position: inherit;
+   width: 400px;
+   min-width: 200px;
+   padding-top: 3px;
+   padding-left: 9px;
 }
 
 body{
@@ -283,6 +307,18 @@ margin:0px;
 padding: 0px;
 }
 
+.btn.btn-sm.btn-default.cardModify{
+float:right;
+text-align: center;
+width: 30px;
+height: 30px;
+background: none;
+vertical-align :middle;
+border: #fff;
+margin:0px;
+padding: 0px;
+}
+
 #listtitleaddbtn{
 text-align: center;
 }
@@ -340,6 +376,10 @@ body {
  #commentNick{
 font-weight: bold;
  }
+ .list span{
+ width:70px;
+ }
+
     </style> 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -581,7 +621,7 @@ font-weight: bold;
              </c:forEach>
              
         }
-        $(this).on("click",".list",function(){
+        $(this).on("click",".list span",function(){
             //ev.preventDefault();
             var target = "detail.do?no=";
             target= target+$(this).attr("id");
@@ -649,7 +689,7 @@ font-weight: bold;
            var listno= $(this).parents('.weekday').attr('id');
            var draghtml = $(this).parents('.weekday').html();
            var ehtml = "<div class='weekday col-md-1' id="+listno+">"+draghtml+"</div>"; 
-      	   var cardno= ui.item.attr('id');
+      	   var cardno= ui.item.find('span').attr('id');
                   $.ajax({
                      url:'dragEvent.do',
                      type:'post',
@@ -666,7 +706,7 @@ font-weight: bold;
           		},  */
                  receive: function (event, ui) {
                	  var listno= $(this).parents('.weekday').attr('id'); 
-           		  var cardno= ui.item.attr('id');
+           		  var cardno= ui.item.find('span').attr('id');
            	     $.ajax({
                      url:'cardListnoUpdate.do',
                      type:'post',
@@ -687,6 +727,38 @@ font-weight: bold;
             $(this).siblings(".footInput").css('display', 'inline'); 
             $(this).siblings('.footInput').find('textarea').focus();
         });
+        $(this).on("click",".cardModify",function(){
+        	 var cardT = $(this).siblings('span').text();
+        	 var cardN=$(this).siblings('span').attr('id');
+           	 $(this).parents(".list").hide();
+        	 $(this).parents(".list").replaceWith("<textarea cols=25 rows=3 style='margin-left:5px' id="+cardN+" class='cardText'>"+cardT+"</textarea><button id=cardModiBtn style='background-color:transparent; border:none;'>확인</button>");
+             cardTitleLimit();
+        
+        });
+        
+        $(this).on("click","#cardModiBtn",function(){
+        	var cardT= $(this).siblings('textarea').val();
+        	var cardN= $(this).siblings('textarea').attr('id');
+        	$(this).siblings('textarea').replaceWith("<li class='list'><span id="+cardN+">"+cardT+"</span><button type='button' class='btn btn-sm btn-default cardModify'><img src='calendar/images/cardmodi.png'></button></li>")
+        	$(this).siblings('textarea').remove();
+        	
+        	 var listno= $(this).parents('.weekday').attr('id');
+
+        	 $(this).hide();
+        	 var inserthtml=$(this).parents('.weekday').html();
+        	 var ehtml = "<div class='weekday col-md-1' id="+listno+">"+inserthtml+"</div>";
+        	 $(this).remove();
+        	 $.ajax({
+                 url:'cardModify.do',
+                 type:'post',
+                 dataType:"json",
+                 data:{"listno":listno,"html":ehtml,"cardno":cardN,"cardtext":cardT},
+                 success:function(data){  
+                 }
+             });   
+        	
+        });
+        
         $(this).on("click",".cardInsert",function(){
             var text = $(this).siblings('textarea').val();
             if(text.trim()==""){
@@ -694,7 +766,7 @@ font-weight: bold;
             }else{
             var cardno = "tmpcard";
             $(this).siblings('textarea').val("");
-            $(this).parents(".listFoot").siblings('.items').append("<li class='list' id="+cardno+">"+text+"</li>");
+            $(this).parents(".listFoot").siblings('.items').append("<li class='list'><span id="+cardno+">"+text+"</span><button type='button' class='btn btn-sm btn-default cardModify'><img src='calendar/images/cardmodi.png'></button></li>");
             $(this).parent(".footInput").css('display', 'none');
             $(this).parent(".footInput").siblings('.footText').css('display', 'inline');
             
@@ -808,7 +880,7 @@ font-weight: bold;
                 success:function(data){
                     listno=data;
                     var tmpHtml = "<div class='weekday col-md-1' id=list"+listno+"><div class='listHeader'><p>"+listTitle+
-                    "<button type='button' class='btn btn-sm btn-default listDelete'> "+
+                    "<button type='button' class='btn btn-sm btn-default listDelete'> "+ 
                     "<img src='calendar/images/deletelist.png'></button></p>"+
                     "</div><ul class='items'></ul><div class = 'listFoot'> "+
                     "<button class='btn-primary footText' id='listtitleaddbtn'><img src='calendar/images/plus-hover.png'></button><div class='footInput' style='display:none;'> "+
@@ -844,7 +916,7 @@ font-weight: bold;
 	                      var listno= $(this).parents('.weekday').attr('id');
 	                      var draghtml = $(this).parents('.weekday').html();
 	                      var ehtml = "<div class='weekday col-md-1' id="+listno+">"+draghtml+"</div>"; 
-	                 	  var cardno= ui.item.attr('id');
+	                 	  var cardno= ui.item.find('span').attr('id');
                              $.ajax({
                                 url:'dragEvent.do',
                                 type:'post',
@@ -861,7 +933,7 @@ font-weight: bold;
                       		},  */
                             receive: function (event, ui) {
                           	  var listno= $(this).parents('.weekday').attr('id'); 
-                       		  var cardno= ui.item.attr('id');
+                       		  var cardno= ui.item.find('span').attr('id');
                        	     $.ajax({
                                  url:'cardListnoUpdate.do',
                                  type:'post',
@@ -1997,37 +2069,34 @@ function searchCheck(){
 
          <div class="col-md-6 half" id ='cardList' >
                 <!-------- 일정 검색 위치 ------------------------------------------------------------------------------------------------------------------>
-		        <form role="form" id="searchForm">
-		            <div class="form-group has-success has-feedback">
-		                <div  id="planSearch">
-		                    <label class="col-lg-0 control-label" for="inputSuccess" style="float: left; text-align: center; height: auto; padding-top: 6px;color:#fff;">
-		                    &nbsp;&nbsp;&nbsp;&nbsp;일정검색 <span class="glyphicon glyphicon-search"></span>
-		                    </label>
-		                    <div class="col-md-3" style="height: 34px">
-		                        <input type="text" class="form-control" id="inputSearch" placeholder="찾고싶은 일정을 입력하세요..."> &nbsp;&nbsp;&nbsp;                        
-		                    </div>
-		                    <div id="searchRadios" style="float: left; width:auto"> 
-		                        <button type="button" class="btn btn-success" id="btnSearch">검색</button>
-		                            &nbsp;&nbsp;&nbsp;
-		                        <label class="radio-inline" style="padding-top: 3px;color:#fff;">
-		                            <input type="radio" name="searchRadio" id="radioMyPlan" value="1" checked="checked">내 일정
-		                        </label> 
-		                        <label class="radio-inline" style="padding-top: 3px;color:#fff;"> 
-		                            <input type="radio" name="searchRadio" id="radioAllPlan" value="2">모든 일정
-		                        </label> 
-		                        <label class="radio-inline" style="padding-top: 3px;color:#fff;"> 
-		                            <input type="radio" name="searchRadio" id="radioHash" value="3">#해시태그
-		                        </label>
-		                    </div>
-		                </div>
-		            </div>
-		        </form>
+              <form role="form" id="searchForm">
+                  <div class="form-group has-success has-feedback">
+                      <div  id="planSearch2">
+                          <label class="searchLabel" for="inputSuccess" style="float: left; text-align: center; color:#fff;">
+                             일정 <span class="glyphicon glyphicon-search"></span>&nbsp;
+                          </label>
+                           <input type="text" class="form-control" id="inputSearch" placeholder="  찾고싶은 일정을 입력하세요..." style="float: left;">
+                           <button type="button" class="btn btn-success" id="btnSearch" style="float: left;">검색</button>                                                
+                          <div id="searchRadios" style="float: left;">                   
+                              <label class="radio-inline" style="padding-top: 3px;color:#fff;">
+                                  <input type="radio" name="searchRadio" id="radioMyPlan" value="1" checked="checked">내 일정
+                              </label> 
+                              <label class="radio-inline" style="padding-top: 3px;color:#fff;"> 
+                                  <input type="radio" name="searchRadio" id="radioAllPlan" value="2">모든 일정
+                              </label> 
+                              <label class="radio-inline" style="padding-top: 3px;color:#fff;"> 
+                                  <input type="radio" name="searchRadio" id="radioHash" value="3">#해시
+                              </label>
+                          </div>
+                      </div>
+                  </div>
+              </form>
   <!-------- 일정 검색 위치 마무리 ------------------------------------------------------------------------------------------------------------------>
             <div style="clear:both"></div>
                 
     
 
-            <div id="timetable" style="float:left;max-width:7000px; margin-top:50px;">
+            <div id="timetable" style="float:left;max-width:7000px; margin-top:-15px;">
                 
                 <div style="text-align:center">
                 

@@ -34,6 +34,36 @@ public class CardController {
 		return "ajax";
 	}
 	
+	  @RequestMapping("cardModify.do")
+	  public String cardModify(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	     HttpSession session=req.getSession();
+	     req.setCharacterEncoding("UTF-8");
+	     String data = req.getParameter("html");
+	     String listno = req.getParameter("listno");
+	     String cardno = req.getParameter("cardno");
+	     String cardtext = req.getParameter("cardtext");
+	     int no = Integer.parseInt(listno.substring(4));
+	     int cno = Integer.parseInt(cardno.substring(4));
+	     String aData = HashingHTML.strTohtml(data);
+	     
+	     ListVO vo = new ListVO();
+	     vo.setHtml(aData);
+	     //vo.setTitle(aData);
+	     //vo.setUserno((int)session.getAttribute("logUserno"));
+	     vo.setNo(no);
+	     OnmDAO.cardUpdate(vo);
+	     CardVO cvo = new CardVO();
+	     cvo.setTitle(cardtext);
+	     cvo.setNo(cno);
+	     System.out.println(cvo.getTitle());
+	     System.out.println(cvo.getNo());
+	     OnmDAO.cardModi(cvo);
+	     /*OnmDAO.dragEvent(no);*/
+	     //res.setCharacterEncoding("UTF-8");
+	     //res.getWriter().write(tot);
+	     return "ajax";
+	  }
+	
   //  카드 삭제
   @RequestMapping("cardDelete.do")
   public String cardDelete(HttpServletRequest req, HttpServletResponse res) throws Exception {

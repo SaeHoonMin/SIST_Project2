@@ -139,7 +139,6 @@ border-bottom: 2px solid #2694e8;
    margin:10px;
 }
 #sideBar{
-   
    padding : 10px;
 }
 #map{

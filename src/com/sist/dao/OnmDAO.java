@@ -87,6 +87,12 @@ public class OnmDAO {
 		session.update("cardUpdate", vo);
 		session.close();
 	}
+	
+	public static void cardModi(CardVO cvo) {
+		SqlSession session = ssf.openSession(true);
+		session.update("cardModi",cvo);
+		session.close();
+	}
 
 	public static List<CardVO> loadCard(int userno) {
 		SqlSession session = ssf.openSession();
